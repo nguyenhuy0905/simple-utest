@@ -12,7 +12,7 @@ all:
 .PHONY: demo
 
 demo: ./demo/demo.c
-	$(CC) -o $@ -Iheader/ $^
+	$(CC) -o demo/$@ -Iheader/ $^
 
 $(LIB): $(OBJS)
 	$(CC) -o $@ -shared -fPIC $^
