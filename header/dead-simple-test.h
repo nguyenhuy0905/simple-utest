@@ -35,9 +35,9 @@ typedef enum _test_result {
 
 #define dstest_run(testname) _dstest_run(testname)
 
-#define dstest_begin_declare(testname) _dstest_begin_declare(testname)
+#define dstest_begin_define(testname) _dstest_begin_declare(testname)
 
-#define dstest_end_declare(testname) _dstest_end_declare(testname)
+#define dstest_end_define(testname) _dstest_end_declare(testname)
 
 /* assertion */
 
