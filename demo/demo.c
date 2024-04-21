@@ -1,4 +1,4 @@
-#include "header/dead-simple-test.h"
+#include "../header/dead-simple-test.h"
 
 DSTEST_BEGIN_TEST_DEFINE
 
