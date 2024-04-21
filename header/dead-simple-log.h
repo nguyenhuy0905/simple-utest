@@ -17,8 +17,6 @@
 
 /* Terminal output styles */
 
-#ifndef DSTEST_OPTION_NO_LOG_FAIL
-
 #define _log_fail_info(testname, expected, actual)                             \
   printf(LOG_RED "\n(Line %d, %s): %s(%s, %s) failed\n" LOG_RESET_COLOR,       \
          __LINE__, __FILE__, #testname, #expected, #actual);
@@ -26,16 +24,6 @@
 #define _log_fail_result(format, expected, actual)                             \
   printf(LOG_RED "Expected " format ", got " format "\n\n" LOG_RESET_COLOR,    \
          expected, actual);
-
-#endif // !DSTEST_OPTION_LOG_FAIL
-
-#ifdef DSTEST_OPTION_NO_LOG_FAIL
-
-#define _log_fail_info(testname, expected, actual)
-
-#define _log_fail_result(format, expected, actual)
-
-#endif // DEBUG
 
 #define _log_end_result()                                                      \
   printf(LOG_YELLOW "==========%s==========\n\n" LOG_RESET_COLOR,              \

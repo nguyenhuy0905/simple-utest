@@ -10,13 +10,6 @@
 #include <string.h>
 /* all the things that shall be used by end-user */
 
-/* list of options */
-#define DSTEST_OPTION_NO_LOG_FAIL
-#undef DSTEST_OPTION_NO_LOG_FAIL
-
-#define DSTEST_EXCLUDE_TEST
-#undef DSTEST_EXCLUDE_TEST
-
 /* test results */
 typedef enum _test_result {
   TEST_SUCCESS,

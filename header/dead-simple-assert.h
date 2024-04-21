@@ -7,7 +7,6 @@
 #define __DEAD_SIMPLE_ASSERT_H__
 
 // TODO: finish the asserts
-#ifndef DSTEST_EXCLUDE_TEST
 
 #define _dstest_assert_numeric(type, expected, actual)                         \
   ++*n_test;                                                                   \
@@ -62,25 +61,5 @@
   else {                                                                       \
     log_fail_info(dstest_assert_null, NULL, actual);                           \
   }
-
-#endif // !DSTEST_EXCLUDE_TEST
-
-#ifdef DSTEST_EXCLUDE_TEST
-
-#define _dstest_assert_numeric(type, expected, actual)
-
-#define _dstest_assert_char(expected, actual)
-
-#define _dstest_assert_int(expected, actual)
-
-#define _dstest_assert_double(expected, actual)
-
-#define _dstest_assert_float(expected, actual)
-
-#define _dstest_assert_long(expected, actual)
-
-#define _dstest_assert_longlong(expected, actual)
-
-#endif // DSTEST_EXCLUDE_TEST
 
 #endif // !__DEAD_SIMPLE_ASSERT_H__

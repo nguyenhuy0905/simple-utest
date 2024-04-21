@@ -22,4 +22,3 @@
 - If you're in source codes of headers (except `dead-simple-test.h`), your LSP may note you about an error. That is totally fine though. Everything still runs perfectly fine if in your code file, you only include `dead-simple-test.h`
 ### Plans
 - [ ] Write some documentation.
-- [ ] Think of a way to fix log fail exclusion option
