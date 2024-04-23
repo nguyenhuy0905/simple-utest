@@ -2,6 +2,7 @@
 #include "../header/log.h"
 #include "../simple-utest.h"
 #include <stdint.h>
+#include <sys/types.h>
 
 #define MAX_TESTS 128
 
@@ -20,15 +21,46 @@ enum lookup_opt {
 struct test_node {
   void (*test)();
   const char *filename;
-  uint16_t line; // i hope no maniac writes 65,535 lines of test
-  uint8_t opt;
+  // i hope no maniac writes 65,535 lines of test in a single file
+  uint16_t line;
+  uint16_t opt;
 };
+
+/* static variables */
 
 static test_node reglist[MAX_TESTS];
 
-static int n_test = 0;
+static uint16_t n_test = 0;
 
 static bool end_declare = 0;
+
+static uint16_t n_run = 0;
+
+static uint16_t n_success = 0;
+
+/* Interface definition for entry-point */
+
+void run_all_tests() {
+  /* foolproof for the user */
+  end_declare = 1;
+
+  for (int i = 0; i < n_test; i++) {
+
+    switch (IS_EXCLUDE(i)) {
+    case true:
+      if (IS_VERBOSE(i))
+        printf("Excluded test at line %d, file %s\n", reglist[i].line,
+               reglist[i].filename);
+      continue;
+    case false:
+      reglist[i].test();
+      ++n_run;
+      break;
+    }
+  }
+}
+
+/* Interface definition for end-user test registration */
 
 void reglist_add(void (*testname)(), const char *filename, uint16_t line) {
   reglist[n_test].test = testname;
@@ -44,12 +76,11 @@ void reglist_config_newest(const uint16_t opt) {
   reglist[n_test - 1].opt |= (1 - end_declare) * opt;
 }
 
-void run_all_tests() {
-  /* foolproof for the user */
-  end_declare = 1;
+/* Interface definition for log information requests */
 
-  for (int i = 0; i < n_test; i++) {
-    if (!IS_EXCLUDE(i))
-      reglist[i].test();
-  }
+void get_summary_info(uint16_t *num_test, uint16_t *num_run,
+                      uint16_t *num_success) {
+  (*num_test) = n_test;
+  (*num_run) = n_run;
+  (*num_success) = n_success;
 }
