@@ -1,0 +1,124 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-fPIC",
+      "-c",
+      "-o",
+      "obj/assert.o",
+      "src/assert.c"
+    ],
+    "directory": "/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+    "file": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/src/assert.c",
+    "output": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/obj/assert.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-fPIC",
+      "-c",
+      "-o",
+      "obj/entry.o",
+      "src/entry.c"
+    ],
+    "directory": "/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+    "file": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/src/entry.c",
+    "output": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/obj/entry.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-fPIC",
+      "-c",
+      "-o",
+      "obj/log.o",
+      "src/log.c"
+    ],
+    "directory": "/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+    "file": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/src/log.c",
+    "output": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/obj/log.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-fPIC",
+      "-c",
+      "-o",
+      "obj/register.o",
+      "src/register.c"
+    ],
+    "directory": "/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+    "file": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/src/register.c",
+    "output": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/obj/register.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-c",
+      "-o",
+      "./test/test-something",
+      "./test/test-something.c"
+    ],
+    "directory": "/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+    "file": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/test/test-something.c",
+    "output": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/test/test-something"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang-17",
+      "-cc1",
+      "-triple",
+      "x86_64-redhat-linux-gnu",
+      "-emit-obj",
+      "-mrelax-all",
+      "-dumpdir",
+      "./test/test-something-",
+      "-disable-free",
+      "-clear-ast-before-backend",
+      "-disable-llvm-verifier",
+      "-discard-value-names",
+      "-main-file-name",
+      "-mrelocation-model",
+      "static",
+      "-mframe-pointer=all",
+      "-fmath-errno",
+      "-ffp-contract=on",
+      "-fno-rounding-math",
+      "-mconstructor-aliases",
+      "-funwind-tables=2",
+      "-target-cpu",
+      "x86-64",
+      "-tune-cpu",
+      "generic",
+      "-debugger-tuning=gdb",
+      "-fcoverage-compilation-dir=/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+      "-resource-dir",
+      "/usr/bin/../lib/clang/17",
+      "-internal-isystem",
+      "/usr/bin/../lib/clang/17/include",
+      "-internal-isystem",
+      "/usr/local/include",
+      "-internal-isystem",
+      "/usr/bin/../lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include",
+      "-internal-externc-isystem",
+      "/include",
+      "-internal-externc-isystem",
+      "/usr/include",
+      "-fdebug-compilation-dir=/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+      "-ferror-limit",
+      "19",
+      "-fgnuc-version=4.2.1",
+      "-fcolor-diagnostics",
+      "-faddrsig",
+      "-D__GCC_HAVE_DWARF2_CFI_ASM=1",
+      "-x",
+      "c",
+      "-o",
+      "/tmp/test-something-9df6c6.o",
+      "./test/test-something.c"
+    ],
+    "directory": "/home/huynguyen/Code/c-and-cpp/simple-unit-test",
+    "file": "/home/huynguyen/Code/c-and-cpp/simple-unit-test/test/test-something.c",
+    "output": "/tmp/test-something-9df6c6.o"
+  }
+]
