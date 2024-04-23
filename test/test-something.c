@@ -6,6 +6,10 @@ register_test(test_something, EXCLUDE | VERBOSE) {
 }
 
 register_test(test_something_else, DEFAULT) {
-  printf("Mom I was called AGAIN!!!\n");
   simple_assert_int(1, 2);
+}
+
+register_test(test_something_true, DEFAULT){
+  simple_assert_double(0.0, 0.0);
+  simple_assert_string("Hello world", "Hello world");
 }
