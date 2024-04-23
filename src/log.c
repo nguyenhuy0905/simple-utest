@@ -14,3 +14,14 @@ void log_final() {
          n_run - n_success);
   printf("\n[" CYAN BOLD "End Summary" RESET_ALL "]\n");
 }
+
+void log_fail_general() {
+  const char *testname, *file;
+  uint16_t line;
+  get_current_test_info(&testname, &line, &file);
+  printf("\n[" BOLD RED "FAIL" RESET_ALL "] ");
+  printf(RED DIM "("
+                 "test %s, line %d, file %s"
+                 ")\n" RESET_ALL,
+         testname, line, file);
+}

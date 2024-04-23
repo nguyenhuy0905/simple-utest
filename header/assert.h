@@ -20,4 +20,7 @@ extern void complex_assert_pointer(const void *expected, const void *actual,
                                    bool (*comparer)(const void *expected,
                                                     const void *actual));
 
+/* Interface with register */
+extern void notify_fail();
+
 #endif // !__SIMPLE_UTEST_ASSERT_H__

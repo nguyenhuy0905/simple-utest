@@ -25,6 +25,7 @@
 /* List of formats */
 
 #define BOLD "\033[1m"
+#define DIM "\033[2m"
 #define ITALIC "\033[3m"
 #define UNDERLINE "\033[4m"
 #define STRIKETHROUGH "\033[9m"
@@ -33,8 +34,23 @@
 
 extern void log_final();
 
-/* information request from register */
+/* Test-specific logs */
+
+/* Interface with test register */
+
 extern void get_summary_info(uint16_t *n_test, uint16_t *n_run,
                              uint16_t *n_success);
+
+extern void get_current_test_info(const char **test_name, uint16_t *line,
+                                  const char **file);
+
+extern uint16_t get_verbosity();
+
+/* Interface with assertions */
+
+extern void log_fail_general();
+
+#define log_fail_result
+#undef log_fail_result
 
 #endif

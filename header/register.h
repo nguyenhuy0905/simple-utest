@@ -9,13 +9,13 @@
  * */
 
 /* DO NOT call this function unless you know exactly what you want to do */
-extern void reglist_add(void (*testname)(), const char *filename,
-                        uint16_t line);
+extern void reglist_add(void (*testname)(), const char *test_name,
+                        const char *filename, uint16_t line);
 
 #define register_test(testname, OPTS)                                          \
   void testname();                                                             \
   __attribute__((constructor)) void reg_##testname() {                         \
-    reglist_add(testname, __FILE__, __LINE__);                                 \
+    reglist_add(testname, #testname, __FILE__, __LINE__);                      \
     reglist_config_newest(OPTS);                                               \
   }                                                                            \
   /* define your test */                                                       \
