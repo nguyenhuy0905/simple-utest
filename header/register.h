@@ -1,6 +1,11 @@
 #ifndef __SIMPLE_UTEST_REGISTER_H__
 #define __SIMPLE_UTEST_REGISTER_H__
 
+/*
+ * The heart of this utility. Controls everything about a test; from test execution,
+ * option handling to log info provision
+ * */
+
 /* DO NOT call this function unless you know exactly what you want to do */
 extern void reglist_add(void (*testname)(), const char *filename, int line);
 

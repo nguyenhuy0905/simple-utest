@@ -1,6 +1,11 @@
 #ifndef __SIMPLE_UTEST_ASSERT_H__
 #define __SIMPLE_UTEST_ASSERT_H__
 
+/*
+ * A list of assertion methods available with simple_assert_[datatype], and
+ * one user-defined assert (complex_assert_pointer)
+ * */
+
 /* these includes don't do anything but suppress some wrong and annoying
  * warnings*/
 #include <stdbool.h>
