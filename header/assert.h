@@ -10,15 +10,15 @@
  * warnings*/
 #include <stdbool.h>
 
-extern void simple_assert_int(int expected, int actual);
+extern void _simple_assert_int(int expected, int actual, int line);
 
-extern void simple_assert_double(double expected, double actual);
+extern void _simple_assert_double(double expected, double actual, int line);
 
-extern void simple_assert_string(const char *expected, const char *actual);
+extern void _simple_assert_string(const char *expected, const char *actual, int line);
 
-extern void complex_assert_pointer(const void *expected, const void *actual,
+extern void _complex_assert_pointer(const void *expected, const void *actual,
                                    bool (*comparer)(const void *expected,
-                                                    const void *actual));
+                                                    const void *actual), int line);
 
 /* Interface with register */
 extern void notify_fail();

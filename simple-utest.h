@@ -6,14 +6,11 @@
 /* maybe this is specific to me. I need to #define and #undef like this
  * for the LSP to not scream at me for the wrong thing */
 
-#define register_test
-#undef register_test
+#define simple_assert_int(expected, actual) _simple_assert_int(expected, actual, __LINE__)
 
-#define EXCLUDE
-#undef EXCLUDE
+#define simple_assert_double(expected, actual) _simple_assert_double(expected, actual, __LINE__)
 
-#define VERBOSE
-#undef VERBOSE
+#define simple_assert_string(expected, actual) _simple_assert_string(expected, actual, __LINE__)
 
 /* declares all the functions that (mostly) can be included by the end user */
 #include "header/.deps.h"
