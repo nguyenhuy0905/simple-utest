@@ -4,15 +4,17 @@
 #include <string.h>
 
 #define log_fail_result(format, expected, actual)                              \
-  printf(RED DIM "\tExpected " format ", got " format "\n" RESET_ALL,          \
-         expected, actual);
+  printf(RED DIM "\t"                                                          \
+                 "%s: "                                                        \
+                 "Expected " format ", got " format "\n" RESET_ALL,            \
+         __func__, expected, actual);
 
 void simple_assert_int(int expected, int actual) {
   if (expected == actual)
     return;
-  
+
   notify_fail();
-  if(!get_verbosity())
+  if (!get_verbosity())
     return;
   log_fail_general();
   log_fail_result("%d", expected, actual);
@@ -22,7 +24,7 @@ void simple_assert_double(double expected, double actual) {
   if (expected == actual)
     return;
   notify_fail();
-  if(!get_verbosity())
+  if (!get_verbosity())
     return;
   log_fail_general();
   log_fail_result("%f", expected, actual);
@@ -32,7 +34,7 @@ void simple_assert_string(const char *expected, const char *actual) {
   if (strcmp(expected, actual) == 0)
     return;
   notify_fail();
-  if(!get_verbosity())
+  if (!get_verbosity())
     return;
   log_fail_general();
   log_fail_result("%s", expected, actual);
