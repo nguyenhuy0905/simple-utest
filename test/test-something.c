@@ -5,7 +5,7 @@ register_test(test_something, EXCLUDE | VERBOSE) {
   simple_assert_string("Never gonna give you up", "Never gonna let you down");
 }
 
-register_test(test_something_else, DEFAULT) {
+register_test(test_something_else, VERBOSE) {
   simple_assert_int(1, 2);
   simple_assert_int(69, 70);
 }

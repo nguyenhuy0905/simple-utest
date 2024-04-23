@@ -10,23 +10,30 @@
 void simple_assert_int(int expected, int actual) {
   if (expected == actual)
     return;
+  
+  notify_fail();
+  if(!get_verbosity())
+    return;
   log_fail_general();
   log_fail_result("%d", expected, actual);
-  notify_fail();
 }
 
 void simple_assert_double(double expected, double actual) {
   if (expected == actual)
     return;
+  notify_fail();
+  if(!get_verbosity())
+    return;
   log_fail_general();
   log_fail_result("%f", expected, actual);
-  notify_fail();
 }
 
 void simple_assert_string(const char *expected, const char *actual) {
   if (strcmp(expected, actual) == 0)
     return;
+  notify_fail();
+  if(!get_verbosity())
+    return;
   log_fail_general();
   log_fail_result("%s", expected, actual);
-  notify_fail();
 }
