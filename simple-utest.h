@@ -5,5 +5,6 @@
 
 #include "header/.deps.h"
 #include "header/register.h"
+#include "header/assert.h"
 
 #endif
