@@ -7,6 +7,7 @@ register_test(test_something, EXCLUDE | VERBOSE) {
 
 register_test(test_something_else, DEFAULT) {
   simple_assert_int(1, 2);
+  simple_assert_int(69, 70);
 }
 
 register_test(test_something_true, DEFAULT){

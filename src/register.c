@@ -55,7 +55,7 @@ void run_all_tests() {
     case true:
       if (IS_VERBOSE(i))
         printf(STRIKETHROUGH MAGNETA
-               "Excluded test at line %d, file %s\n" RESET_ALL,
+               "Excluded test %s at line %d, file %s\n" RESET_ALL, reglist[i].testname,
                reglist[i].line, reglist[i].filename);
       continue;
     case false:
