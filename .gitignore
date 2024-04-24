@@ -2,3 +2,4 @@ test/test-something
 obj/*.o
 lib/*.so
 .cache
+release/*
