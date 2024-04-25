@@ -17,8 +17,12 @@ $(OBJS): ./obj/%.o: ./src/%.c
 
 .PHONY: test
 
-test: $(LIB)
-	$(CC) -o ./test/test-something ./test/test-something.c -L./lib/ -lsimple-utest $(OPTS)
+test: export LD_LIBRARY_PATH := ${LD_LIBRARY_PATH}:./lib/
+test: ./test/test-something
+	$^
+	
+./test/test-something: $(LIB) ./test/test-something.c
+	$(CC) -o $@ $^ -L./lib/ -lsimple-utest $(OPTS)
 
 .PHONY: clean
 
