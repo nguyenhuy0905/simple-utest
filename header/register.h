@@ -25,10 +25,12 @@ extern void reglist_add(void (*testname)(), const char *test_name,
 
 extern void reglist_config_newest(const uint16_t);
 
-#define DEFAULT 0b0
-
-#define EXCLUDE 0b1
-
-#define VERBOSE 0b10
+enum reg_opts{
+  DEFAULT = 0b0,
+  EXCLUDE = 0b1,
+  VERBOSE = 0b110,
+  VERBOSE_FAIL_LOG = 0b010,
+  VERBOSE_SUCCESS_LOG = 0b100,
+};
 
 #endif // !__SIMPLE_UTEST_REGISTER_H__
