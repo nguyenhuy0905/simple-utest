@@ -3,3 +3,4 @@ obj/*.o
 lib/*.so
 .cache
 release/*
+doc/wiki/*
