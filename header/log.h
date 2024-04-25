@@ -50,7 +50,21 @@ extern uint16_t get_verbosity();
 
 extern void log_fail_general();
 
-#define log_fail_result
-#undef log_fail_result
+#define log_fail_result(format)                                                \
+  printf(RED DIM "\t"                                                          \
+                 "%s, line %d: "                                               \
+                 "Expected " format ", got " format "\n" RESET_ALL,            \
+         __func__, line, expected, actual);
+
+#define log_fail(format)                                                       \
+  log_fail_general();                                                          \
+  log_fail_result(format);
+
+extern void log_success_general();
+
+#define log_success(format)                                                    \
+  printf("\n[" GREEN BOLD "SUCCESS" RESET_ALL "] " GREEN DIM "%s(" format      \
+         ", " format "), line %d\n" RESET_ALL,                                 \
+         __func__, expected, actual, line);
 
 #endif
