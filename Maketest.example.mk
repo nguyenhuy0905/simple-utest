@@ -25,6 +25,10 @@ all: export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):$(SIMPLE_TEST_DIR)
 all: $(TEST)
 	$^
 
+# building (static) intermediate objects
+# that will be combined into a singular test file.
+# note: even though these are different files, do NOT name
+# any function similar to one another.
 $(TEST): $(OBJS)
 	@echo $(SRCS)
 	@echo $(OBJS)

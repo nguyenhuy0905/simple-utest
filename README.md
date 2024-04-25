@@ -32,6 +32,7 @@ make
 - One day. I promise. One day I will release a package instead.
 ---
 ### How to use
+- [Check out the example Makefile](./Maketest.example.mk)
 - Documentation coming soon. Sorry :(
 - To use in your C file/header:
 ```
@@ -43,13 +44,13 @@ make
 # or gcc
 clang -o your-file-name your-file-name.c -L/path/to/simple-utest/ -lsimple-utest
 ```
-- To execute the test file (check out [the shell script](./run-test.sh)):
+- To execute the test file:
 ```
 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-file-name
 ```
 ---
 ### Plans
 - [ ] Write some documentation
-- [ ] Release a binary package
+- [x] Release a binary package
 - [ ] Implement user-defined assertion
 - [ ] Add inline data "syntax sugar"
