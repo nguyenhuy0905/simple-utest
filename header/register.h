@@ -25,11 +25,16 @@ extern void reglist_add(void (*testname)(), const char *test_name,
 
 extern void reglist_config_newest(const uint16_t);
 
-enum reg_opts{
+enum reg_opts {
+  /* does not turn on any option below */
   DEFAULT = 0b0,
+  /* does not run this test */
   EXCLUDE = 0b1,
+  /* prints out success and fail log */
   VERBOSE = 0b110,
+  /* prints out success log */
   VERBOSE_FAIL_LOG = 0b010,
+  /* prints out fail log */
   VERBOSE_SUCCESS_LOG = 0b100,
 };
 
