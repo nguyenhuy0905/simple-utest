@@ -7,8 +7,9 @@ register_test(test_something, EXCLUDE | VERBOSE) {
 
 register_test(test_something_else, VERBOSE_FAIL_LOG) {
   simple_assert_int(1, 2);
-  simple_assert_int(69, 70);
-  simple_assert_int(6, 6);
+  simple_assert_float(6.6, 6.6);
+  simple_assert_double(7.3, 7.4);
+  simple_assert_char('c', 'c');
 }
 
 register_test(test_something_true, VERBOSE_SUCCESS_LOG) {

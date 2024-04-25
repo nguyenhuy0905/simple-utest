@@ -14,7 +14,17 @@ extern void _simple_assert_int(int expected, int actual, int line);
 
 extern void _simple_assert_double(double expected, double actual, int line);
 
-extern void _simple_assert_string(const char *expected, const char *actual, int line);
+extern void _simple_assert_string(const char *expected, const char *actual,
+                                  int line);
+
+extern void _simple_assert_float(float expected, float actual, int line);
+
+extern void _simple_assert_long(long expected, long actual, int line);
+
+extern void _simple_assert_long_long(long long expected, long long actual,
+                                     int line);
+
+extern void _simple_assert_char(char expected, char actual, int line);
 
 /* Interface with register */
 extern void notify_fail();
