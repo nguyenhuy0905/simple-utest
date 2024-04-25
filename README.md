@@ -6,10 +6,13 @@
 ![Syntax demo](./doc/img/testfile-demo.jpg)
 ---
 ### Disclaimer
+- This is mainly designed for Linux.
+    - If you're on MacOS or any POSIX-compliant OS, you probably still can use this well
+    - If you're on Windows, I have bad news for you
 - Due to the use of `__attribute__` and `0b` in the code, this is only compatible with compilers that support such features (`gcc`, `clang`, and perhaps more)
 - Well, technically also a convenient utility for my _other, left-behind_ project.
 - If you want something that is as straightforward but much more featureful, check out [Criterion](https://github.com/Snaipe/Criterion). This, for now, is meant for my learning this language.
-- Due to the design of this utility, running tests concurrently or multi-threadedly is very difficult. You can still spawn threads and run your program however, just be sure that what is passed into assertions is the final result of the multi-thread process
+- Due to the design of this utility, running tests concurrently or multi-threadedly is very difficult. You can still spawn threads and run your program however, just be sure that what is passed into assertions is the final result of the multi-thread process.
 ---
 ### Installation: build from source
 - Make sure you have `clang` (version 17 or higher) installed. (Older versions may work but it's not a guarantee) (`gcc` will work as well, but will need a tiny extra step)
@@ -23,13 +26,17 @@ make
 # or make CC=gcc OPTS=-g if you want to include debug flags 
 # for the library (which is only necessary if you need to test out the library)
 ```
-- Optionally, to run [the demo file](./test/test-something.c), you can instead use the shell script:
+- Optionally, to compile and run [the demo files](./test/), run this command instead:
 ```
-./run-test.sh
+make test
+# or make test OPTS=-g if you want to include debug flags 
+# in the library and the test
 ```
 ---
 ### Installation: download package
-- One day. I promise. One day I will release a package instead.
+- [Download a release binary here](https://github.com/nguyenhuy0905/simple-utest/releases), preferably the latest release. Note: as of now, the releases are not ready for "_professional_" use.
+- Unzip to the directory of the project you would like to write tests on, (optionally,) rename the folder to `simple-utest`.
+    - If you really really enjoy using this, you can [add the directory to PATH](https://phoenixnap.com/kb/linux-add-to-path).
 ---
 ### How to use
 - [Check out the example Makefile](./Maketest.example.mk)
@@ -42,15 +49,23 @@ make
 - Then, when compiling:
 ```
 # or gcc
-clang -o your-file-name your-file-name.c -L/path/to/simple-utest/ -lsimple-utest
+clang -o your-test-executable your-file-name.c -L/path/to/simple-utest/ -lsimple-utest
 ```
 - To execute the test file:
 ```
-LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-file-name
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-executable
 ```
+- You can combine a few test files into one test executable to better utilize the 128 max-test cap.
+    - If you choose to do so, make sure that no function has the same name.
+    - This is necessary if for some reason, you want to write more than about 65000 lines of test.
+    - [You can check the demo Makefile to see how to combine tests](./Maketest.example.mk)
+- Or, of course, you can just combine each test file as its own executable.
 ---
 ### Plans
 - [ ] Write some documentation
 - [x] Release a binary package
 - [ ] Implement user-defined assertion
 - [ ] Add inline data "syntax sugar"
+- [ ] Give option to write test results to a log file
+### Changelog
+- I'm lazy. Just [check the Releases page](https://github.com/nguyenhuy0905/simple-utest/releases).
