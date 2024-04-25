@@ -21,7 +21,7 @@ test: export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):./lib/
 test: ./test/test-something
 	$^
 	
-./test/test-something: $(LIB) ./test/test-something.c
+./test/test-something: $(shell find ./test -name '*.c') $(LIB)
 	$(CC) -o $@ $^ -L./lib/ -lsimple-utest $(OPTS)
 
 .PHONY: clean
