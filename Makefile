@@ -17,7 +17,7 @@ $(OBJS): ./obj/%.o: ./src/%.c
 
 .PHONY: test
 
-test: export LD_LIBRARY_PATH := ${LD_LIBRARY_PATH}:./lib/
+test: export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):./lib/
 test: ./test/test-something
 	$^
 	
