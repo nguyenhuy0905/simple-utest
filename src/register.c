@@ -8,13 +8,6 @@
 
 typedef struct test_node test_node;
 
-/* doesn't actually do anything other than being a "lookup table" */
-enum lookup_opt {
-  OPT_DEFAULT = 0b00000000, // simply, none of the options below
-  OPT_EXCLUDE = 0b00000001, // registered in bit #16
-  OPT_VERBOSE = 0b00000010, // registered in bit #15
-};
-
 #define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 0b1)
 #define IS_VERBOSE(test_pos)                                                   \
   (IS_VERBOSE_FAIL(test_pos) && IS_VERBOSE_SUCCESS(test_pos))
