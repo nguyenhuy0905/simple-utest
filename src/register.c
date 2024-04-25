@@ -68,6 +68,8 @@ void run_all_tests() {
 
 void reglist_add(void (*test)(), const char *test_name, const char *filename,
                  uint16_t line) {
+  if (end_declare)
+    return;
   reglist[n_test].test = test;
   reglist[n_test].filename = filename;
   reglist[n_test].testname = test_name;
