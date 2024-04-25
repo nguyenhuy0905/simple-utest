@@ -16,7 +16,10 @@ enum lookup_opt {
 };
 
 #define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 0b1)
-#define IS_VERBOSE(test_pos) ((reglist[test_pos].opt >> 1) & 0b1)
+#define IS_VERBOSE(test_pos)                                                   \
+  (IS_VERBOSE_FAIL(test_pos) && IS_VERBOSE_SUCCESS(test_pos))
+#define IS_VERBOSE_FAIL(test_pos) ((reglist[test_pos].opt >> 1) & 0b1)
+#define IS_VERBOSE_SUCCESS(test_pos) ((reglist[test_pos].opt >> 2) & 0b1)
 
 struct test_node {
   void (*test)();
@@ -55,8 +58,8 @@ void run_all_tests() {
     case true:
       if (IS_VERBOSE(i))
         printf(STRIKETHROUGH MAGNETA
-               "Excluded test %s at line %d, file %s\n" RESET_ALL, reglist[i].testname,
-               reglist[i].line, reglist[i].filename);
+               "Excluded test %s at line %d, file %s\n" RESET_ALL,
+               reglist[i].testname, reglist[i].line, reglist[i].filename);
       continue;
     case false:
       reglist[i].test();
@@ -83,7 +86,7 @@ void reglist_add(void (*test)(), const char *test_name, const char *filename,
 void reglist_config_newest(const uint16_t opt) {
   /* n_test is already incremented when this is called,
    * so to access the "current" test, subtract n by 1 */
-  reglist[n_test - 1].opt |= (1 - end_declare) * opt;
+  reglist[n_test - 1].opt = (1 - end_declare) * opt;
 }
 
 /* Interface definition for log information requests */
@@ -102,7 +105,7 @@ void get_current_test_info(const char **test_name, uint16_t *line,
   (*file) = reglist[i].filename;
 }
 
-uint16_t get_verbosity() { return IS_VERBOSE(i); }
+uint16_t get_verbosity() { return (reglist[i].opt >> 1) & 0b11; }
 
 /* Interface definition for assertion results */
-void notify_fail() { reglist[i].success = false; }
+void notify_fail() { reglist[i].success = -(-1 + end_declare); }

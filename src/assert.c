@@ -3,39 +3,41 @@
 #include "../simple-utest.h"
 #include <string.h>
 
-#define log_fail_result(format)                                                \
-  printf(RED DIM "\t"                                                          \
-                 "%s, line %d: "                                               \
-                 "Expected " format ", got " format "\n" RESET_ALL,            \
-         __func__, line, expected, actual);
-
 void _simple_assert_int(int expected, int actual, int line) {
-  if (expected == actual)
+  uint16_t verbosity = get_verbosity();
+  if (expected == actual) {
+    if ((verbosity >> 1) & 0b1)
+      log_success("%d");
     return;
-
+  }
   notify_fail();
-  if (!get_verbosity())
+  if (!verbosity)
     return;
-  log_fail_general();
-  log_fail_result("%d");
+  log_fail("%d");
 }
 
 void _simple_assert_double(double expected, double actual, int line) {
-  if (expected == actual)
+  uint16_t verbosity = get_verbosity();
+  if (expected == actual) {
+    if ((verbosity >> 1) & 0b1)
+      log_success("%f");
     return;
+  }
   notify_fail();
-  if (!get_verbosity())
+  if (!verbosity)
     return;
-  log_fail_general();
-  log_fail_result("%f");
+  log_fail("%f");
 }
 
 void _simple_assert_string(const char *expected, const char *actual, int line) {
-  if (strcmp(expected, actual) == 0)
+  uint16_t verbosity = get_verbosity();
+  if (strcmp(expected, actual) == 0) {
+    if ((verbosity >> 1) & 0b1)
+      log_success("%s");
     return;
+  }
   notify_fail();
-  if (!get_verbosity())
+  if (!verbosity)
     return;
-  log_fail_general();
-  log_fail_result("%s");
+  log_fail("%s");
 }
