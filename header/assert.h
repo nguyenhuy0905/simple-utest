@@ -27,6 +27,5 @@ extern void _simple_assert_long_long(long long expected, long long actual,
 extern void _simple_assert_char(char expected, char actual, int line);
 
 /* Interface with register */
-extern void notify_fail();
 
 #endif // !__SIMPLE_UTEST_ASSERT_H__

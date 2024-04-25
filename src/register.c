@@ -1,3 +1,4 @@
+#include "../header/assert.module.h"
 #include "../header/entry.h"
 #include "../header/log.h"
 #include "../simple-utest.h"
@@ -101,4 +102,4 @@ void get_current_test_info(const char **test_name, uint16_t *line,
 uint16_t get_verbosity() { return (reglist[i].opt >> 1) & 0b11; }
 
 /* Interface definition for assertion results */
-void notify_fail() { reglist[i].success = -(-1 + end_declare); }
+void notify_fail() { reglist[i].success = 0; }

@@ -19,4 +19,6 @@
   log_if_success(comparer, format);                                            \
   log_if_fail(format);
 
+extern void notify_fail();
+
 #endif // !__SIMPLE_UTEST_ASSERT_MODULE_H__
