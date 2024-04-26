@@ -1,6 +1,12 @@
 #ifndef __SIMPLE_UTEST_ASSERT_MODULE_H__
 #define __SIMPLE_UTEST_ASSERT_MODULE_H__
 
+/*
+ * A list of private methods that is only used to construct assertions.
+ * This may be used by end-user to construct their own assertion methods,
+ * but should not be used in test files.
+ * */
+
 #define log_if_success(comparer, format)                                       \
   if (comparer) {                                                              \
     if ((verbosity >> 1) & 0b1) {                                              \
