@@ -67,5 +67,7 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-exe
 - [ ] Implement user-defined assertion
 - [ ] Add inline data "syntax sugar"
 - [ ] Give option to write test results to a log file
+### Issues
+- [ ] Float or double assertions returning wrong results. This is due to how the variable types work. I will change both of these methods to require passing in precision degree.
 ### Changelog
 - I'm lazy. Just [check the Releases page](https://github.com/nguyenhuy0905/simple-utest/releases).

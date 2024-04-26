@@ -33,6 +33,7 @@
 /* declares all the functions that (mostly) can be included by the end user */
 #include "header/.deps.h"
 #include "header/assert.h"
+#include "header/params.h"
 #include "header/register.h"
 
 #endif

@@ -23,6 +23,7 @@ extern void reglist_add(void (*testname)(), const char *test_name,
 
 /* options to be passed into register_test() */
 
+/* configure the newly registered test with option */
 extern void reglist_config_newest(const uint16_t);
 
 enum reg_opts {

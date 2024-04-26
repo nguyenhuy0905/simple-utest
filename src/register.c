@@ -2,8 +2,6 @@
 #include "../header/assert.module.h"
 #include "../header/entry.h"
 #include "../header/log.h"
-#include <stdint.h>
-#include <sys/types.h>
 
 #define MAX_TESTS 128
 

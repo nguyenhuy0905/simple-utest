@@ -10,22 +10,25 @@
 #define log_if_success(comparer, format)                                       \
   if (comparer) {                                                              \
     if ((verbosity >> 1) & 0b1) {                                              \
-      log_success(format);                                                     \
+      log_success(format)                                                      \
     }                                                                          \
     return;                                                                    \
   }
 
 #define log_if_fail(format)                                                    \
   notify_fail();                                                               \
-  if (!verbosity)                                                              \
+  if (!(verbosity & 0b1))                                                      \
     return;                                                                    \
   log_fail(format);
 
-#define set_up_assert(comparer, format)                                        \
+#define set_up_simple_assert(comparer, format)                                 \
   uint16_t verbosity = get_verbosity();                                        \
   log_if_success(comparer, format);                                            \
   log_if_fail(format);
 
 extern void notify_fail();
+
+#define declare_custom_assert(assertname, type)                                \
+  extern void assertname(type expected, type actual, int line);
 
 #endif // !__SIMPLE_UTEST_ASSERT_MODULE_H__
