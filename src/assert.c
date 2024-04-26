@@ -1,7 +1,7 @@
+#include "../header/.deps.h"
 #include "../header/assert.h"
 #include "../header/assert.module.h"
 #include "../header/log.h"
-#include "../simple-utest.h"
 #include <string.h>
 
 void _simple_assert_int(int expected, int actual, int line) {

@@ -1,7 +1,7 @@
+#include "../header/.deps.h"
 #include "../header/assert.module.h"
 #include "../header/entry.h"
 #include "../header/log.h"
-#include "../simple-utest.h"
 #include <stdint.h>
 #include <sys/types.h>
 

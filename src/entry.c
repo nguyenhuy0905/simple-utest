@@ -1,6 +1,6 @@
+#include "../header/.deps.h"
 #include "../header/entry.h"
 #include "../header/log.h"
-#include "../simple-utest.h"
 
 int main(int argc, char *argv[]) {
   printf("\n[" BOLD CYAN "Start test run" RESET_ALL "]\n");
