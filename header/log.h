@@ -63,8 +63,7 @@ extern void log_fail_general();
 extern void log_success_general();
 
 #define log_success(format)                                                    \
-  printf("\n[" GREEN BOLD "SUCCESS" RESET_ALL "] " GREEN DIM "%s(" format      \
-         ", " format "), line %d\n" RESET_ALL,                                 \
-         __func__, expected, actual, line);
+  log_success_general();\
+  printf(GREEN DIM "\t" "%s(" format ", " format "), line %d\n" RESET_ALL, __func__, expected, actual, __LINE__);\
 
 #endif

@@ -3,8 +3,9 @@
 
 #define log_if_success(comparer, format)                                       \
   if (comparer) {                                                              \
-    if ((verbosity >> 1) & 0b1)                                                \
+    if ((verbosity >> 1) & 0b1) {                                              \
       log_success(format);                                                     \
+    }                                                                          \
     return;                                                                    \
   }
 
