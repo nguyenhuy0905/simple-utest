@@ -73,6 +73,6 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-exe
 - [x] Implement parameterized tests
 - [ ] Give option to write test results to a log file
 ### Issues
-- [ ] Float or double assertions returning wrong results, especially if . This is due to how the variable types work. I will modify the method to request for degree of precision.
+- [ ] Float or double assertions returning wrong results, especially if mathematical expressions are included/executed. This is due to how the variable types work. I will modify the method to request for degree of precision.
 ### Changelog
 - I'm lazy. Just [check the Releases page](https://github.com/nguyenhuy0905/simple-utest/releases).
