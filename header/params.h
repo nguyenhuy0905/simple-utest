@@ -1,13 +1,15 @@
 #ifndef __SIMPLE_UTEST_PARAMS_H__
 #define __SIMPLE_UTEST_PARAMS_H__
 
-#define define_param_list(type, listname, size) type listname[][size] =
+#define PARAM_LIST(...) \
+  { __VA_ARGS__ }
 
-#define param_list_size(listname) sizeof(listname) / sizeof(listname[0])
+#define simple_parameterize(p_listname, type, n_col, paramlist) \
+  type p_listname[][n_col] = paramlist;                         \
+  for (int i = 0; i < sizeof(p_listname) / sizeof(p_listname[0]); i++)
 
-#define loop_param_list(listname)                                              \
-  for (int i = 0; i < sizeof(listname) / sizeof(listname[0]); i++)
+#define params(listname) listname[i]
 
-#define param(listname, index) listname[i][index]
+#define list_size(listname) sizeof((int[])listname)
 
-#endif // !__SIMPLE_UTEST_PARAMS_H__
+#endif  // !__SIMPLE_UTEST_PARAMS_H__

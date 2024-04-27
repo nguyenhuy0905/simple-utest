@@ -1,0 +1,6 @@
+BasedOnStyle: Google
+IndentWidth: 2
+PointerAlignment: Right
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false

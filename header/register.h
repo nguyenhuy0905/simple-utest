@@ -12,13 +12,13 @@
 extern void reglist_add(void (*testname)(), const char *test_name,
                         const char *filename, uint16_t line);
 
-#define register_test(testname, OPTS)                                          \
-  void testname();                                                             \
-  __attribute__((constructor)) void reg_##testname() {                         \
-    reglist_add(testname, #testname, __FILE__, __LINE__);                      \
-    reglist_config_newest(OPTS);                                               \
-  }                                                                            \
-  /* define your test */                                                       \
+#define register_test(testname, OPTS)                     \
+  void testname();                                        \
+  __attribute__((constructor)) void reg_##testname() {    \
+    reglist_add(testname, #testname, __FILE__, __LINE__); \
+    reglist_config_newest(OPTS);                          \
+  }                                                       \
+  /* define your test */                                  \
   void testname()
 
 /* options to be passed into register_test() */
@@ -39,4 +39,4 @@ enum reg_opts {
   VERBOSE_SUCCESS_LOG = 0b100,
 };
 
-#endif // !__SIMPLE_UTEST_REGISTER_H__
+#endif  // !__SIMPLE_UTEST_REGISTER_H__
