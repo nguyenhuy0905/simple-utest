@@ -39,4 +39,37 @@ enum reg_opts {
   VERBOSE_SUCCESS_LOG = 0b100,
 };
 
+/* Dealing with parameterized tests */
+
+#define ARGS_LIST(...) __VA_ARGS__
+
+#define PARAM_LIST(...) (__VA_ARGS__)
+
+#define register_param_test(testname, arglist, OPTS, paramlist...) \
+  void simple_wrapper_for_##testname();                            \
+  void testname(arglist);                                          \
+  register_test(simple_wrapper_for_##testname, OPTS) {             \
+    _PASS_PARAM_LIST(testname, paramlist)                          \
+  }                                                                \
+  void testname(arglist)
+
+#define _PASS_PARAM_LIST(testname, ...) \
+  __VA_OPT__(EXPAND(_PASS_HELPER(testname, __VA_ARGS__)))
+
+#define _PAREN ()
+
+#define _PASS_HELPER(testname, paramlist, ...) \
+  testname paramlist;                          \
+  __VA_OPT__(_PASS_HELPER_ALIAS _PAREN(testname, __VA_ARGS__))
+
+#define _PASS_HELPER_ALIAS() _PASS_HELPER
+
+/* Parameter list expansion, maximum 64 (4^3) list for each parameterized test
+ */
+/* DO NOT CALL. */
+#define EXPAND(arg) EXPAND1(EXPAND1(EXPAND1(EXPAND1(arg))))
+#define EXPAND1(arg) EXPAND2(EXPAND2(EXPAND2(EXPAND2(arg))))
+#define EXPAND2(arg) EXPAND3(EXPAND3(EXPAND3(EXPAND3(arg))))
+#define EXPAND3(arg) arg
+
 #endif  // !__SIMPLE_UTEST_REGISTER_H__

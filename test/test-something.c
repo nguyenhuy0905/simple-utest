@@ -17,12 +17,4 @@ register_test(test_something_else, VERBOSE_FAIL_LOG) {
 register_test(test_something_true, VERBOSE) {
   simple_assert_double(0.0, 0.0);
   simple_assert_string("Hello world", "Hello world");
-  // parameterize
-  simple_parameterize(test_list_int, int, 3,
-                      PARAM_LIST({1, 2, 3}, {4, 5, 9}, {-99, 1, -98})) {
-    int add1 = params(test_list_int)[0];
-    int add2 = params(test_list_int)[1];
-    int expected = params(test_list_int)[2];
-    simple_assert_int(add1 + add2, expected);
-  }
 }
