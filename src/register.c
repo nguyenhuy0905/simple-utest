@@ -11,7 +11,7 @@ typedef union test_type test_type;
 
 #define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 0b1)
 #define IS_VERBOSE(test_pos) \
-  (IS_VERBOSE_FAIL(test_pos) && IS_VERBOSE_SUCCESS(test_pos))
+  (IS_VERBOSE_FAIL(test_pos) || IS_VERBOSE_SUCCESS(test_pos))
 #define IS_VERBOSE_FAIL(test_pos) ((reglist[test_pos].opt >> 1) & 0b1)
 #define IS_VERBOSE_SUCCESS(test_pos) ((reglist[test_pos].opt >> 2) & 0b1)
 
@@ -51,7 +51,7 @@ void run_all_tests() {
       case true:
         if (IS_VERBOSE(i))
           printf(STRIKETHROUGH MAGNETA
-                 "Excluded test %s at line %d, file %s\n" RESET_ALL,
+                 "\nExcluded test %s at line %d, file %s\n" RESET_ALL,
                  reglist[i].testname, reglist[i].line, reglist[i].filename);
         continue;
       case false:

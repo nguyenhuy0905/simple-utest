@@ -41,6 +41,8 @@ enum reg_opts {
 
 /* Dealing with parameterized tests */
 
+/* argument list and parameterized list must be wrapped inside these functions
+ */
 #define ARGS_LIST(...) __VA_ARGS__
 
 #define PARAM_LIST(...) (__VA_ARGS__)
@@ -52,6 +54,11 @@ enum reg_opts {
     _PASS_PARAM_LIST(testname, paramlist)                          \
   }                                                                \
   void testname(arglist)
+
+/* All of the below can be called by the user, but I heavily recommend
+ * against doing so. All of the below are utilized inside register_param_test
+ * already
+ * */
 
 #define _PASS_PARAM_LIST(testname, ...) \
   __VA_OPT__(EXPAND(_PASS_HELPER(testname, __VA_ARGS__)))

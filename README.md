@@ -13,6 +13,10 @@
 - Well, technically also a convenient utility for my _other, left-behind_ project.
 - If you want something that is as straightforward but much more featureful, check out [Criterion](https://github.com/Snaipe/Criterion). This, for now, is meant for my learning this language.
 - Due to the design of this utility, running tests concurrently or multi-threadedly is very difficult. You can still spawn threads and run your program however, just be sure that what is passed into assertions is the final result of the multi-thread process.
+### Requirements
+- `clang` or `gcc` or any gcc-compliant C compilers.
+- C23. This is important for parameterized tests to work.
+    - The utility does utilize the macro `__VA_OPT__`
 ---
 ### Installation: build from source
 - Make sure you have `clang` (version 17 or higher) installed. (Older versions may work but it's not a guarantee) (`gcc` will work as well, but will need a tiny extra step)
