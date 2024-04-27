@@ -21,8 +21,7 @@ register_test(test_something_true, VERBOSE) {
   simple_assert_string("Hello world", "Hello world");
 }
 
-register_param_test(test_params, ARGS_LIST(int a, char b), VERBOSE,
-                    PARAM_LIST(0, 'a'), PARAM_LIST(1, 'b'),
+register_param_test(test_params, ARGS_LIST(int a, char b), VERBOSE, PARAM_LIST(0, 'a'), PARAM_LIST(1, 'b'),
                     PARAM_LIST(2, 'c')) {
   simple_assert_char(('a' + a), b);
   simple_assert_int((b - 'a'), a);

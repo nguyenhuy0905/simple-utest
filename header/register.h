@@ -50,9 +50,13 @@ enum reg_opts {
 #define register_param_test(testname, arglist, OPTS, paramlist...) \
   void simple_wrapper_for_##testname();                            \
   void testname(arglist);                                          \
-  register_test(simple_wrapper_for_##testname, OPTS) {             \
-    _PASS_PARAM_LIST(testname, paramlist)                          \
-  }                                                                \
+  __attribute__((constructor)) void reg_simple_wrapper_for_##testname(){\
+    reglist_add(simple_wrapper_for_##testname, #testname, __FILE__, __LINE__);\
+    reglist_config_newest(OPTS);\
+  }\
+  void simple_wrapper_for_##testname (){\
+    _PASS_PARAM_LIST(testname, paramlist);\
+  }\
   void testname(arglist)
 
 /* All of the below can be called by the user, but I heavily recommend
