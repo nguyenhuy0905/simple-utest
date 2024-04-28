@@ -69,7 +69,7 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-exe
 - [ ] Write some documentation
 - [x] Release a binary package
 - [ ] Allow user-defined assertion
-- ~[ ] Add inline data "syntax sugar"~
+- [ ] ~Add inline data "syntax sugar"~
 - [x] Implement parameterized tests
 - [ ] Give option to write test results to a log file
 ### Issues

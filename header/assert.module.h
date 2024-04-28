@@ -29,6 +29,6 @@
 extern void notify_fail();
 
 #define declare_custom_assert(assertname, type)                                \
-  extern void assertname(type expected, type actual, int line);
+  extern void _##assertname(type expected, type actual, int line);
 
 #endif // !__SIMPLE_UTEST_ASSERT_MODULE_H__
