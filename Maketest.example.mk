@@ -34,5 +34,5 @@ $(TEST): $(OBJS)
 	@echo $(OBJS)
 	$(CC) -o $@ $^ -L$(SIMPLE_TEST_DIR) -lsimple-utest
 
-$(TESt_OBJS): $(OBJ_DIR)%.o: $(TEST_SRC_DIR)%.c
+$(TEST_OBJS): $(OBJ_DIR)%.o: $(TEST_SRC_DIR)%.c
 	$(CC) -c -o $@ $^
