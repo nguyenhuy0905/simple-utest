@@ -6,8 +6,9 @@ CC := clang # or gcc
 
 # directories. Change according to your project
 # directory of the test source file
-SIMPLE_TEST_DIR := ./lib
 # directory of the simple-utest binary
+SIMPLE_TEST_DIR := ./lib
+# directory of test source code
 SRC_DIR := ./test 
 # directory for intermediate object files (.o)
 OBJ_DIR := ./obj 
@@ -30,9 +31,12 @@ all: $(TEST)
 # note: even though these are different files, do NOT name
 # any function similar to one another.
 $(TEST): $(OBJS)
-	@echo $(SRCS)
-	@echo $(OBJS)
 	$(CC) -o $@ $^ -L$(SIMPLE_TEST_DIR) -lsimple-utest
 
-$(TEST_OBJS): $(OBJ_DIR)%.o: $(TEST_SRC_DIR)%.c
-	$(CC) -c -o $@ $^
+# PHONY so that this step isn't automatically executed after the test binary
+# is compiled
+.PHONY: clean
+
+# remove all the binary
+clean:
+	rm -f $(OBJS) $(TEST)
