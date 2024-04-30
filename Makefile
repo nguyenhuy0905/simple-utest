@@ -19,7 +19,7 @@ $(OBJS): ./obj/%.o: ./src/%.c
 
 test: export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):./lib/
 test: ./test/test-something
-	$^
+	$^ output.txt.format
 	
 ./test/test-something: $(shell find ./test -name '*.c') $(LIB)
 	$(CC) -o $@ $^ -L./lib/ -lsimple-utest $(OPTS)
