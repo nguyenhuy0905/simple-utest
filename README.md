@@ -36,6 +36,15 @@ make test
 # or make test OPTS=-g if you want to include debug flags 
 # in the library and the test
 ```
+- If you're on Windows, or if you're just lazy managing all dependencies of this project, simply use the provided Docker builds to run the demo test files:
+    - Make sure you have installed Docker
+    - Create a file named output.txt.format, placing it in the same directory as the Makefile
+    - Run the following:
+    ```
+    docker build -t simpletest .
+    docker compose up -d
+    cat output.txt.format
+    ```
 ---
 ### Installation: download package
 - [Download a release binary here](https://github.com/nguyenhuy0905/simple-utest/releases), preferably the latest release. Note: as of now, the releases are not ready for "_professional_" use.
@@ -72,6 +81,7 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-exe
 - [ ] ~Add inline data "syntax sugar"~
 - [x] Implement parameterized tests
 - [ ] ~Give option to write test results to a log file~
+- [x] Add pseudo-cross-platform functionality ;)
 ### Issues
 - [ ] Float or double assertions returning wrong results, especially if mathematical expressions are included/executed. This is due to how the variable types work. I will modify the method to request for degree of precision.
 ### Changelog
