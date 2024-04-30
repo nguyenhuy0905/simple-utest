@@ -4,3 +4,4 @@ lib/*.so
 .cache
 release/*
 doc/simple-utest.wiki/*
+output.txt.format
