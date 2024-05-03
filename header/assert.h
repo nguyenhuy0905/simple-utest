@@ -6,10 +6,6 @@
  * the end-user can use to write test
  * */
 
-/* these includes don't do anything but suppress some wrong and annoying
- * warnings*/
-#include <stdbool.h>
-
 extern void _simple_assert_int(int expected, int actual, int line);
 
 extern void _simple_assert_double(double expected, double actual, int line);

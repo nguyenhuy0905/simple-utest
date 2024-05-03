@@ -2,6 +2,7 @@
 #define __SIMPLE_UTEST_LOG_H__
 
 #include <stdint.h>
+#include <stdio.h>
 /*
  * Console output for the utility.
  * Any non-test-specific output is defined in log.c,

@@ -1,6 +1,8 @@
 #ifndef __SIMPLE_UTEST_ASSERT_MODULE_H__
 #define __SIMPLE_UTEST_ASSERT_MODULE_H__
 
+#include "log.h"
+
 /*
  * A list of private methods that is only used to construct assertions.
  * This may be used by end-user to construct their own assertion methods,
@@ -29,6 +31,6 @@
 extern void notify_fail();
 
 #define declare_custom_assert(assertname, type)                                \
-  extern void _##assertname(type expected, type actual, int line);
+  extern void _##assertname(type expected_custom, type actual_custom, int line);
 
 #endif // !__SIMPLE_UTEST_ASSERT_MODULE_H__
