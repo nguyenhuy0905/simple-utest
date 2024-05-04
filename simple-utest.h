@@ -9,11 +9,11 @@
 #define simple_assert_int(expected, actual) \
   _simple_assert_int(expected, actual, __LINE__)
 
-#define simple_assert_double(expected, actual) \
-  _simple_assert_double(expected, actual, __LINE__)
+#define simple_assert_double(expected, actual, deg) \
+  _simple_assert_double(expected, actual, deg, __LINE__)
 
-#define simple_assert_float(expected, actual) \
-  _simple_assert_float(expected, actual, __LINE__)
+#define simple_assert_float(expected, actual, deg) \
+  _simple_assert_float(expected, actual, deg, __LINE__)
 
 #define simple_assert_long(expected, actual) \
   _simple_assert_long(expected, actual, __LINE__)

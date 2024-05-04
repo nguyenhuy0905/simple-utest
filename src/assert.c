@@ -8,12 +8,12 @@ void _simple_assert_int(int expected, int actual, int line) {
   set_up_simple_assert(expected == actual, "%d");
 }
 
-void _simple_assert_double(double expected, double actual, int line) {
-  set_up_simple_assert(expected == actual, "%f");
+void _simple_assert_double(double expected, double actual, double deg, int line) {
+  set_up_simple_assert((expected - actual) <= deg, "%f");
 }
 
-void _simple_assert_float(float expected, float actual, int line) {
-  set_up_simple_assert(expected == actual, "%f");
+void _simple_assert_float(float expected, float actual, float deg, int line) {
+  set_up_simple_assert((expected - actual) <= deg, "%f");
 }
 
 void _simple_assert_long(long expected, long actual, int line) {

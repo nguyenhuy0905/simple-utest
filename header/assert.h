@@ -8,12 +8,12 @@
 
 extern void _simple_assert_int(int expected, int actual, int line);
 
-extern void _simple_assert_double(double expected, double actual, int line);
+extern void _simple_assert_double(double expected, double actual, double deg, int line);
 
 extern void _simple_assert_string(const char *expected, const char *actual,
                                   int line);
 
-extern void _simple_assert_float(float expected, float actual, int line);
+extern void _simple_assert_float(float expected, float actual, float deg, int line);
 
 extern void _simple_assert_long(long expected, long actual, int line);
 
