@@ -75,11 +75,13 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-exe
 - Or, of course, you can just combine each test file as its own executable.
 ---
 ### Plans
-- [ ] Write some documentation
+- [x] Write some documentation
+- [ ] Finish documentation
 - [x] Release a binary package
-- [ ] Allow user-defined assertion
+- [x] Allow user-defined assertion
 - [ ] ~Add inline data "syntax sugar"~
 - [x] Implement parameterized tests
+- [ ] Let users define more complex test with multiple comparisons in one
 - [ ] ~Give option to write test results to a log file~
 - [x] Add pseudo-cross-platform functionality ;)
 ### Issues
