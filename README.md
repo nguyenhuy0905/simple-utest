@@ -79,10 +79,8 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/path/to/simple-utest/ /path/to/your-test-exe
 - [ ] Finish documentation
 - [x] Release a binary package
 - [x] Allow user-defined assertion
-- [ ] ~Add inline data "syntax sugar"~
 - [x] Implement parameterized tests
 - [ ] Let users define more complex test with multiple comparisons in one
-- [ ] ~Give option to write test results to a log file~
 - [x] Add pseudo-cross-platform functionality ;)
 ### Issues
 - [ ] Float or double assertions returning wrong results, especially if mathematical expressions are included/executed. This is due to how the variable types work. I will modify the method to request for degree of precision.
