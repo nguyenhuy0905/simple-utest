@@ -22,6 +22,8 @@ extern void _simple_assert_long_long(long long expected, long long actual,
 
 extern void _simple_assert_char(char expected, char actual, int line);
 
+extern void _simple_assert_nonnull(void *expected, int line);
+
 /* Interface with register */
 
 #endif // !__SIMPLE_UTEST_ASSERT_H__
