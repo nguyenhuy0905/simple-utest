@@ -50,8 +50,10 @@ void _simple_assert_nonnull(void *expected, int line) {
     }
     return;
   }
-  log_success_general();
-  printf(GREEN DIM "\t"
-                   "%s(void*), line %d\n" RESET_ALL,
-         __func__, __LINE__);
+  if ((verbosity >> 1) & 0b1) {
+    log_success_general();
+    printf(GREEN DIM "\t"
+                     "%s(void*), line %d\n" RESET_ALL,
+           __func__, __LINE__);
+  }
 }
