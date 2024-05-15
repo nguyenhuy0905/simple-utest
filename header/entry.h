@@ -6,6 +6,6 @@
 
 /* Interface with test registers */
 
-extern void run_all_tests();
+extern void run_all_tests(void);
 
 #endif

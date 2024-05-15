@@ -33,7 +33,7 @@
 
 /* general logs */
 
-extern void log_final();
+extern void log_final(void);
 
 /* Test-specific logs */
 
@@ -45,11 +45,11 @@ extern void get_summary_info(uint16_t *n_test, uint16_t *n_run,
 extern void get_current_test_info(const char **test_name, uint16_t *line,
                                   const char **file);
 
-extern uint16_t get_verbosity();
+extern uint16_t get_verbosity(void);
 
 /* Interface with assertions */
 
-extern void log_fail_general();
+extern void log_fail_general(void);
 
 #define log_fail_result(format)                                                \
   printf(RED DIM "\t"                                                          \
@@ -61,7 +61,7 @@ extern void log_fail_general();
   log_fail_general();                                                          \
   log_fail_result(format);
 
-extern void log_success_general();
+extern void log_success_general(void);
 
 #define log_success(format)                                                    \
   log_success_general();\

@@ -5,7 +5,7 @@ SRCS := $(wildcard ./src/*.c)
 OBJS := $(patsubst ./src/%.c,./obj/%.o,$(SRCS))
 LIB := ./lib/libsimple-utest.so
 
-OPTS :=
+OPTS := -Og -g -pedantic
 
 all: $(LIB)
 

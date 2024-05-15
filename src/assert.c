@@ -37,7 +37,7 @@ void _simple_assert_nonnull(void *expected, int line) {
   uint16_t verbosity = get_verbosity();
   if (expected == NULL) {
     notify_fail();
-    if (verbosity & 0b1) {
+    if (verbosity & 1) {
       log_fail_general();
       printf(RED DIM "\t"
                      "%s, line %d: "
@@ -50,7 +50,7 @@ void _simple_assert_nonnull(void *expected, int line) {
     }
     return;
   }
-  if ((verbosity >> 1) & 0b1) {
+  if ((verbosity >> 1) & 1) {
     log_success_general();
     printf(GREEN DIM "\t"
                      "%s(void*), line %d\n" RESET_ALL,

@@ -9,14 +9,14 @@ typedef struct test_node test_node;
 
 typedef union test_type test_type;
 
-#define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 0b1)
+#define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 1)
 #define IS_VERBOSE(test_pos) \
   (IS_VERBOSE_FAIL(test_pos) || IS_VERBOSE_SUCCESS(test_pos))
-#define IS_VERBOSE_FAIL(test_pos) ((reglist[test_pos].opt >> 1) & 0b1)
-#define IS_VERBOSE_SUCCESS(test_pos) ((reglist[test_pos].opt >> 2) & 0b1)
+#define IS_VERBOSE_FAIL(test_pos) ((reglist[test_pos].opt >> 1) & 1)
+#define IS_VERBOSE_SUCCESS(test_pos) ((reglist[test_pos].opt >> 2) & 1)
 
 struct test_node {
-  void (*test)();
+  void (*test)(void);
   const char *filename;
   const char *testname;
   // i hope no maniac writes 65,535 lines of test in a single file
@@ -40,7 +40,7 @@ static uint16_t n_success = 0;
 static uint8_t i = 0;
 /* Interface definition for entry-point */
 
-void run_all_tests() {
+void run_all_tests(void) {
   /* foolproof for the user */
   end_declare = 1;
 
@@ -65,14 +65,14 @@ void run_all_tests() {
 
 /* Interface definition for end-user test registration */
 
-void reglist_add(void (*test)(), const char *test_name, const char *filename,
+void reglist_add(void (*test)(void), const char *test_name, const char *filename,
                  uint16_t line) {
   if (end_declare) return;
   reglist[n_test].test = test;
   reglist[n_test].filename = filename;
   reglist[n_test].testname = test_name;
   reglist[n_test].line = line;
-  reglist[n_test].opt = 0b0;
+  reglist[n_test].opt = 1;
   reglist[n_test].success = true;
   n_test++;
 }
@@ -99,7 +99,7 @@ void get_current_test_info(const char **test_name, uint16_t *line,
   (*file) = reglist[i].filename;
 }
 
-uint16_t get_verbosity() { return (reglist[i].opt >> 1) & 0b11; }
+uint16_t get_verbosity(void) { return (reglist[i].opt >> 1) & 3; }
 
 /* Interface definition for assertion results */
-void notify_fail() { reglist[i].success = 0; }
+void notify_fail(void) { reglist[i].success = 0; }

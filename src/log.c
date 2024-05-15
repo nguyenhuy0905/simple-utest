@@ -1,7 +1,7 @@
 #include "../header/log.h"
 #include <stdio.h>
 
-void log_final() {
+void log_final(void) {
   uint16_t n_test, n_run, n_success;
   get_summary_info(&n_test, &n_run, &n_success);
   printf("\n[" CYAN BOLD "Summary" RESET_ALL "]\n");
@@ -15,7 +15,7 @@ void log_final() {
   printf("\n[" CYAN BOLD "End Summary" RESET_ALL "]\n");
 }
 
-void log_fail_general() {
+void log_fail_general(void) {
   const char *testname, *file;
   uint16_t line;
   get_current_test_info(&testname, &line, &file);
@@ -26,7 +26,7 @@ void log_fail_general() {
          testname, line, file);
 }
 
-void log_success_general() {
+void log_success_general(void) {
   const char *testname, *file;
   uint16_t line;
   get_current_test_info(&testname, &line, &file);

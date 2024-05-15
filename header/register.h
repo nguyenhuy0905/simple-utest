@@ -9,17 +9,17 @@
  * */
 
 /* DO NOT call this function unless you know exactly what you want to do */
-extern void reglist_add(void (*testname)(), const char *test_name,
+extern void reglist_add(void (*testname)(void), const char *test_name,
                         const char *filename, uint16_t line);
 
-#define register_test(testname, OPTS)                     \
-  void testname();                                        \
-  __attribute__((constructor)) void reg_##testname() {    \
-    reglist_add(testname, #testname, __FILE__, __LINE__); \
-    reglist_config_newest(OPTS);                          \
-  }                                                       \
-  /* define your test */                                  \
-  void testname()
+#define register_test(testname, OPTS)                                          \
+  void testname(void);                                                         \
+  __attribute__((constructor)) void reg_##testname(void) {                     \
+    reglist_add(testname, #testname, __FILE__, __LINE__);                      \
+    reglist_config_newest(OPTS);                                               \
+  }                                                                            \
+  /* define your test */                                                       \
+  void testname(void)
 
 /* options to be passed into register_test() */
 
@@ -28,15 +28,15 @@ extern void reglist_config_newest(const uint16_t);
 
 enum reg_opts {
   /* run test with no success or fail log */
-  DEFAULT = 0b0,
+  DEFAULT = 0,
   /* does not run this test */
-  EXCLUDE = 0b1,
+  EXCLUDE = 1,
   /* prints out success and fail log */
-  VERBOSE = 0b110,
+  VERBOSE = 6,
   /* prints out success log */
-  VERBOSE_FAIL_LOG = 0b010,
+  VERBOSE_FAIL_LOG = 2,
   /* prints out fail log */
-  VERBOSE_SUCCESS_LOG = 0b100,
+  VERBOSE_SUCCESS_LOG = 4,
 };
 
 /* Dealing with parameterized tests */
@@ -47,16 +47,16 @@ enum reg_opts {
 
 #define PARAM_LIST(...) (__VA_ARGS__)
 
-#define register_param_test(testname, arglist, OPTS, paramlist...) \
-  void simple_wrapper_for_##testname();                            \
-  void testname(arglist);                                          \
-  __attribute__((constructor)) void reg_simple_wrapper_for_##testname(){\
-    reglist_add(simple_wrapper_for_##testname, #testname, __FILE__, __LINE__);\
-    reglist_config_newest(OPTS);\
-  }\
-  void simple_wrapper_for_##testname (){\
-    _PASS_PARAM_LIST(testname, paramlist);\
-  }\
+#define register_param_test(testname, arglist, OPTS, paramlist...)             \
+  void simple_wrapper_for_##testname();                                        \
+  void testname(arglist);                                                      \
+  __attribute__((constructor)) void reg_simple_wrapper_for_##testname(void) {  \
+    reglist_add(simple_wrapper_for_##testname, #testname, __FILE__, __LINE__); \
+    reglist_config_newest(OPTS);                                               \
+  }                                                                            \
+  void simple_wrapper_for_##testname(void) {                                   \
+    _PASS_PARAM_LIST(testname, paramlist);                                     \
+  }                                                                            \
   void testname(arglist)
 
 /* All of the below can be called by the user, but I heavily recommend
@@ -64,13 +64,13 @@ enum reg_opts {
  * already
  * */
 
-#define _PASS_PARAM_LIST(testname, ...) \
+#define _PASS_PARAM_LIST(testname, ...)                                        \
   __VA_OPT__(EXPAND(_PASS_HELPER(testname, __VA_ARGS__)))
 
 #define _PAREN ()
 
-#define _PASS_HELPER(testname, paramlist, ...) \
-  testname paramlist;                          \
+#define _PASS_HELPER(testname, paramlist, ...)                                 \
+  testname paramlist;                                                          \
   __VA_OPT__(_PASS_HELPER_ALIAS _PAREN(testname, __VA_ARGS__))
 
 #define _PASS_HELPER_ALIAS() _PASS_HELPER
@@ -83,4 +83,4 @@ enum reg_opts {
 #define EXPAND2(arg) EXPAND3(EXPAND3(EXPAND3(EXPAND3(arg))))
 #define EXPAND3(arg) arg
 
-#endif  // !__SIMPLE_UTEST_REGISTER_H__
+#endif // !__SIMPLE_UTEST_REGISTER_H__
