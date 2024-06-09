@@ -43,4 +43,3 @@ write_basic_package_version_file(
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/SimpleUtestConfigs.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/SimpleUtestConfigsVersion.cmake
         DESTINATION lib/cmake/simple-utest)
-install(FILES simple-utest.h DESTINATION lib/header)
