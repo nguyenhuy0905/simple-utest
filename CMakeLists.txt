@@ -7,8 +7,7 @@ project(
 # standards
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-
-set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR})
+set(includes ${CMAKE_CURRENT_SOURCE_DIR}/simple-utest.h)
 
 # compilation options
 set(is_gcc_like "$<COMPILE_LANG_AND_ID:C,ARMClang,AppleClang,Clang,GNU,LCC>")

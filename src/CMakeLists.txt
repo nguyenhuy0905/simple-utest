@@ -6,15 +6,10 @@ add_library(simple-utest STATIC ${srcs})
 target_include_directories(
   simple-utest
   PUBLIC $<BUILD_INTERFACE:${src_include_dirs}>
-         $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/header;${PROJECT_SOURCE_DIR}>
-)
+         $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/header;${CMAKE_SOURCE_DIR}>)
 
 # export configs
 install(
   TARGETS simple-utest
   EXPORT SimpleUtestTargets
   DESTINATION lib)
-
-install(FILES header/.deps.h header/assert.h header/assert.module.h
-              header/entry.h header/log.h header/register.h
-        DESTINATION lib/header)
