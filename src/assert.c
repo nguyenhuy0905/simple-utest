@@ -1,7 +1,7 @@
-#include "../header/assert.h"
-#include "../header/.deps.h"
-#include "../header/assert.module.h"
-#include "../header/log.h"
+#include "assert.h"
+#include ".deps.h"
+#include "assert.module.h"
+#include "log.h"
 #include <string.h>
 
 void _simple_assert_int(int expected, int actual, int line) {

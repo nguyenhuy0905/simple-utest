@@ -47,7 +47,11 @@ enum reg_opts {
 
 #define PARAM_LIST(...) (__VA_ARGS__)
 
-#define register_param_test(testname, arglist, OPTS, paramlist...)             \
+/*
+ * note, Clang with pedantic may say something of the line "must specify at
+ * least 1 argument". It's just yappin'.
+ * */
+#define register_param_test(testname, arglist, OPTS, ...)                      \
   void simple_wrapper_for_##testname();                                        \
   void testname(arglist);                                                      \
   __attribute__((constructor)) void reg_simple_wrapper_for_##testname(void) {  \
@@ -55,7 +59,7 @@ enum reg_opts {
     reglist_config_newest(OPTS);                                               \
   }                                                                            \
   void simple_wrapper_for_##testname(void) {                                   \
-    _PASS_PARAM_LIST(testname, paramlist);                                     \
+    _PASS_PARAM_LIST(testname, __VA_ARGS__);                                   \
   }                                                                            \
   void testname(arglist)
 

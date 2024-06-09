@@ -34,8 +34,8 @@
   _simple_assert_nonnull(expected, __LINE__)
 
 /* declares all the functions that (mostly) can be included by the end user */
-#include "header/.deps.h"
-#include "header/assert.h"
-#include "header/register.h"
+#include ".deps.h"
+#include "assert.h"
+#include "register.h"
 
 #endif

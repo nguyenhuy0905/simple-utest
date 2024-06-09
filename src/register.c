@@ -1,7 +1,7 @@
-#include "../header/.deps.h"
-#include "../header/assert.module.h"
-#include "../header/entry.h"
-#include "../header/log.h"
+#include ".deps.h"
+#include "assert.module.h"
+#include "entry.h"
+#include "log.h"
 
 #define MAX_TESTS 128
 
@@ -10,7 +10,7 @@ typedef struct test_node test_node;
 typedef union test_type test_type;
 
 #define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 1)
-#define IS_VERBOSE(test_pos) \
+#define IS_VERBOSE(test_pos)                                                   \
   (IS_VERBOSE_FAIL(test_pos) || IS_VERBOSE_SUCCESS(test_pos))
 #define IS_VERBOSE_FAIL(test_pos) ((reglist[test_pos].opt >> 1) & 1)
 #define IS_VERBOSE_SUCCESS(test_pos) ((reglist[test_pos].opt >> 2) & 1)
@@ -44,30 +44,29 @@ void run_all_tests(void) {
   /* foolproof for the user */
   end_declare = 1;
 
-  uint16_t n_fail = 0;
-
   for (i = 0; i < n_test; i++) {
     switch (IS_EXCLUDE(i)) {
-      case true:
-        if (IS_VERBOSE(i))
-          printf(STRIKETHROUGH MAGNETA
-                 "\nExcluded test %s at line %d, file %s\n" RESET_ALL,
-                 reglist[i].testname, reglist[i].line, reglist[i].filename);
-        continue;
-      case false:
-        reglist[i].test();
-        ++n_run;
-        n_success += reglist[i].success;
-        break;
+    case true:
+      if (IS_VERBOSE(i))
+        printf(STRIKETHROUGH MAGNETA
+               "\nExcluded test %s at line %d, file %s\n" RESET_ALL,
+               reglist[i].testname, reglist[i].line, reglist[i].filename);
+      continue;
+    case false:
+      reglist[i].test();
+      ++n_run;
+      n_success += reglist[i].success;
+      break;
     }
   }
 }
 
 /* Interface definition for end-user test registration */
 
-void reglist_add(void (*test)(void), const char *test_name, const char *filename,
-                 uint16_t line) {
-  if (end_declare) return;
+void reglist_add(void (*test)(void), const char *test_name,
+                 const char *filename, uint16_t line) {
+  if (end_declare)
+    return;
   reglist[n_test].test = test;
   reglist[n_test].filename = filename;
   reglist[n_test].testname = test_name;

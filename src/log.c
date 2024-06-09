@@ -1,4 +1,4 @@
-#include "../header/log.h"
+#include "log.h"
 #include <stdio.h>
 
 void log_final(void) {

@@ -1,9 +1,0 @@
-version: '6.9'
-services:
-  simple-utest:
-    container_name: simple-utest
-    image: simpletest:latest
-    volumes:
-      - ./output.txt.format:/simple-utest/output.txt.format
-      - ./docker-run-test.sh:/simple-utest/docker-run-test.sh
-      - ./test:/simple-utest/test

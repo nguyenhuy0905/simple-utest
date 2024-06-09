@@ -1,7 +1,9 @@
 test/test-something
-obj/*.o
-lib/*.so
+lib/*
 .cache
 release/*
 doc/simple-utest.wiki/*
 output.txt.format
+build/*
+test-simple-utest
+compile_commands.json

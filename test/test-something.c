@@ -1,4 +1,4 @@
-#include "../simple-utest.h"
+#include "simple-utest.h"
 
 /* Feature-showcasing */
 

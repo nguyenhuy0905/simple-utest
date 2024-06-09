@@ -1,8 +1,8 @@
-#include "../header/.deps.h"
-#include "../header/entry.h"
-#include "../header/log.h"
+#include "entry.h"
+#include ".deps.h"
+#include "log.h"
 
-int main(int argc, char *argv[]) {
+int main() {
   printf("\n[" BOLD CYAN "Start test run" RESET_ALL "]\n");
 
   run_all_tests();
