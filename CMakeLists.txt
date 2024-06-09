@@ -7,7 +7,7 @@ project(
 # standards
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-set(includes ${CMAKE_CURRENT_SOURCE_DIR}/simple-utest.h)
+set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 
 # compilation options
 set(is_gcc_like "$<COMPILE_LANG_AND_ID:C,ARMClang,AppleClang,Clang,GNU,LCC>")
@@ -32,7 +32,7 @@ include(GNUInstallDirs)
 configure_package_config_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
   "${CMAKE_CURRENT_BINARY_DIR}/SimpleUtestConfigs.cmake"
-  INSTALL_DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/simple-utest"
+  INSTALL_DESTINATION "lib/cmake/simple-utest"
   NO_SET_AND_CHECK_MACRO NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 
 write_basic_package_version_file(
@@ -42,4 +42,4 @@ write_basic_package_version_file(
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/SimpleUtestConfigs.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/SimpleUtestConfigsVersion.cmake
-        DESTINATION ${PROJECT_SOURCE_DIR}/lib/cmake/simple-utest)
+        DESTINATION lib/cmake/simple-utest)
