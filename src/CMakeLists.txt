@@ -5,7 +5,7 @@ set(srcs assert.c entry.c log.c register.c)
 add_library(simple-utest STATIC ${srcs})
 target_include_directories(
   simple-utest PUBLIC $<BUILD_INTERFACE:${src_include_dirs}>
-                      $<INSTALL_INTERFACE:header>)
+                      $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/header>)
 
 # export configs
 install(
