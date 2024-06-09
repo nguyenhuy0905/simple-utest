@@ -6,7 +6,8 @@ add_library(simple-utest STATIC ${srcs})
 target_include_directories(
   simple-utest
   PUBLIC $<BUILD_INTERFACE:${src_include_dirs}>
-         $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/header;${CMAKE_SOURCE_DIR}>)
+         $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/header>
+         $<INSTALL_INTERFACE:${CMAKE_SOURCE_DIR}>)
 
 # export configs
 install(
