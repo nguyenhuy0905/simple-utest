@@ -1,5 +1,5 @@
-#ifndef __SIMPLE_UTEST_REGISTER_H__
-#define __SIMPLE_UTEST_REGISTER_H__
+#ifndef SIMPLE_UTEST_REGISTER_H
+#define SIMPLE_UTEST_REGISTER_H
 
 /* this inclusion is mainly to have my LSP not scream at me */
 #include <stdint.h>
@@ -12,19 +12,19 @@
 extern void reglist_add(void (*testname)(void), const char *test_name,
                         const char *filename, uint16_t line);
 
-#define register_test(testname, OPTS)                                          \
-  void testname(void);                                                         \
-  __attribute__((constructor)) void reg_##testname(void) {                     \
-    reglist_add(testname, #testname, __FILE__, __LINE__);                      \
-    reglist_config_newest(OPTS);                                               \
-  }                                                                            \
-  /* define your test */                                                       \
+#define register_test(testname, OPTS)                      \
+  void testname(void);                                     \
+  __attribute__((constructor)) void reg_##testname(void) { \
+    reglist_add(testname, #testname, __FILE__, __LINE__);  \
+    reglist_config_newest(OPTS);                           \
+  }                                                        \
+  /* define your test */                                   \
   void testname(void)
 
 /* options to be passed into register_test() */
 
 /* configure the newly registered test with option */
-extern void reglist_config_newest(const uint16_t);
+extern void reglist_config_newest(uint16_t);
 
 enum reg_opts {
   /* run test with no success or fail log */
@@ -59,7 +59,7 @@ enum reg_opts {
     reglist_config_newest(OPTS);                                               \
   }                                                                            \
   void simple_wrapper_for_##testname(void) {                                   \
-    _PASS_PARAM_LIST(testname, __VA_ARGS__);                                   \
+    PASS_PARAM_LIST(testname, __VA_ARGS__);                                    \
   }                                                                            \
   void testname(arglist)
 
@@ -68,16 +68,16 @@ enum reg_opts {
  * already
  * */
 
-#define _PASS_PARAM_LIST(testname, ...)                                        \
-  __VA_OPT__(EXPAND(_PASS_HELPER(testname, __VA_ARGS__)))
+#define PASS_PARAM_LIST(testname, ...) \
+  __VA_OPT__(EXPAND(PASS_HELPER(testname, __VA_ARGS__)))
 
-#define _PAREN ()
+#define PAREN ()
 
-#define _PASS_HELPER(testname, paramlist, ...)                                 \
-  testname paramlist;                                                          \
-  __VA_OPT__(_PASS_HELPER_ALIAS _PAREN(testname, __VA_ARGS__))
+#define PASS_HELPER(testname, paramlist, ...) \
+  testname paramlist;                         \
+  __VA_OPT__(PASS_HELPER_ALIAS PAREN(testname, __VA_ARGS__))
 
-#define _PASS_HELPER_ALIAS() _PASS_HELPER
+#define PASS_HELPER_ALIAS() PASS_HELPER
 
 /* Parameter list expansion, maximum 64 (4^3) list for each parameterized test
  */
@@ -87,4 +87,4 @@ enum reg_opts {
 #define EXPAND2(arg) EXPAND3(EXPAND3(EXPAND3(EXPAND3(arg))))
 #define EXPAND3(arg) arg
 
-#endif // !__SIMPLE_UTEST_REGISTER_H__
+#endif  // !SIMPLE_UTEST_REGISTER_H

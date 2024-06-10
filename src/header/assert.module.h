@@ -1,5 +1,5 @@
-#ifndef __SIMPLE_UTEST_ASSERT_MODULE_H__
-#define __SIMPLE_UTEST_ASSERT_MODULE_H__
+#ifndef SIMPLE_UTEST_ASSERT_MODULE_H
+#define SIMPLE_UTEST_ASSERT_MODULE_H
 
 #include "log.h"
 
@@ -9,28 +9,28 @@
  * but should not be used in test files.
  * */
 
-#define log_if_success(comparer, format)                                       \
-  if (comparer) {                                                              \
-    if ((verbosity >> 1) & 1) {                                              \
-      log_success(format)                                                      \
-    }                                                                          \
-    return;                                                                    \
+#define log_if_success(comparer, format) \
+  if (comparer) {                        \
+    if ((verbosity >> 1) & 1) {          \
+      log_success(format)                \
+    }                                    \
+    return;                              \
   }
 
-#define log_if_fail(format)                                                    \
-  notify_fail();                                                               \
-  if (!(verbosity & 1))                                                      \
-    return;                                                                    \
+#define log_if_fail(format)     \
+  notify_fail();                \
+  if (!(verbosity & 1)) return; \
   log_fail(format);
 
-#define set_up_simple_assert(comparer, format)                                 \
-  uint16_t verbosity = get_verbosity();                                        \
-  log_if_success(comparer, format);                                            \
+#define set_up_simple_assert(comparer, format) \
+  uint16_t verbosity = get_verbosity();        \
+  log_if_success(comparer, format);            \
   log_if_fail(format);
 
 extern void notify_fail(void);
 
-#define declare_custom_assert(assertname, type)                                \
-  extern void _##assertname(type expected_custom, type actual_custom, int line);
+/* I couldn't use expected and actual cuz that's occupied by the log macros */
+#define declare_custom_assert(assertname, type) \
+  extern void _##assertname(type expect_val, type actual_val, int line);
 
-#endif // !__SIMPLE_UTEST_ASSERT_MODULE_H__
+#endif  // !SIMPLE_UTEST_ASSERT_MODULE_H

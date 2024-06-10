@@ -1,5 +1,5 @@
-#ifndef __SIMPLE_UTEST_LOG_H__
-#define __SIMPLE_UTEST_LOG_H__
+#ifndef SIMPLE_UTEST_LOG_H
+#define SIMPLE_UTEST_LOG_H
 
 #include <stdint.h>
 #include <stdio.h>
@@ -39,8 +39,8 @@ extern void log_final(void);
 
 /* Interface with test register */
 
-extern void get_summary_info(uint16_t *n_test, uint16_t *n_run,
-                             uint16_t *n_success);
+extern void get_summary_info(uint16_t *num_test, uint16_t *num_run,
+                             uint16_t *num_success);
 
 extern void get_current_test_info(const char **test_name, uint16_t *line,
                                   const char **file);

@@ -1,8 +1,11 @@
 #include "log.h"
+
 #include <stdio.h>
 
 void log_final(void) {
-  uint16_t n_test, n_run, n_success;
+  uint16_t n_test;
+  uint16_t n_run;
+  uint16_t n_success;
   get_summary_info(&n_test, &n_run, &n_success);
   printf("\n[" CYAN BOLD "Summary" RESET_ALL "]\n");
   printf("\n\t" BOLD "Total number of tests registered: " BLUE "%d\n" RESET_ALL,
@@ -16,23 +19,27 @@ void log_final(void) {
 }
 
 void log_fail_general(void) {
-  const char *testname, *file;
+  const char *testname;
+  const char *file;
   uint16_t line;
   get_current_test_info(&testname, &line, &file);
   printf("\n[" BOLD RED "FAIL" RESET_ALL "] ");
-  printf(RED DIM "("
-                 "test %s, line %d, file %s"
-                 ")\n" RESET_ALL,
+  printf(RED DIM
+         "("
+         "test %s, line %d, file %s"
+         ")\n" RESET_ALL,
          testname, line, file);
 }
 
 void log_success_general(void) {
-  const char *testname, *file;
+  const char *testname;
+  const char *file;
   uint16_t line;
   get_current_test_info(&testname, &line, &file);
   printf("\n[" BOLD GREEN "SUCCESS" RESET_ALL "] ");
-  printf(GREEN DIM "("
-                   "test %s, line %d, file %s"
-                   ")\n" RESET_ALL,
+  printf(GREEN DIM
+         "("
+         "test %s, line %d, file %s"
+         ")\n" RESET_ALL,
          testname, line, file);
 }

@@ -1,5 +1,5 @@
 #include <string.h>
-#include "../simple-utest.h"
+#include "simple-utest.h"
 #include "custom-struct.h"
 #include "custom-struct-assert.h"
 

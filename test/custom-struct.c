@@ -14,7 +14,7 @@ c_string *new_string(const char* val){
     printf("String allocation error\n");
     return NULL;
   }
-  new_instance->len = strlen(val);
+  new_instance->len = (int)strlen(val);
   new_instance->str = (char*)malloc(new_instance->len + 1);
   strncpy(new_instance->str, val, new_instance->len);
   new_instance->str[new_instance->len] = '\0';
@@ -22,8 +22,13 @@ c_string *new_string(const char* val){
 }
 
 void realloc_string(c_string *cstr, const char *val){
-  cstr->len = strlen(val);
-  cstr->str = (char*)realloc(cstr->str, cstr->len + 1); 
+  cstr->len = (int)strlen(val);
+  free(cstr->str);
+  cstr->str = (char*)malloc(cstr->len + 1);
+  if(cstr->str == NULL){
+    fprintf(stderr, "Error allocating memory to cstring\n");
+    return;
+  }
   strncpy(cstr->str, val, cstr->len);
   cstr->str[cstr->len] = '\0';
 }

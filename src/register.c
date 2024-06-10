@@ -10,7 +10,7 @@ typedef struct test_node test_node;
 typedef union test_type test_type;
 
 #define IS_EXCLUDE(test_pos) ((reglist[test_pos].opt >> 0) & 1)
-#define IS_VERBOSE(test_pos)                                                   \
+#define IS_VERBOSE(test_pos) \
   (IS_VERBOSE_FAIL(test_pos) || IS_VERBOSE_SUCCESS(test_pos))
 #define IS_VERBOSE_FAIL(test_pos) ((reglist[test_pos].opt >> 1) & 1)
 #define IS_VERBOSE_SUCCESS(test_pos) ((reglist[test_pos].opt >> 2) & 1)
@@ -22,7 +22,7 @@ struct test_node {
   // i hope no maniac writes 65,535 lines of test in a single file
   uint16_t line;
   uint16_t opt;
-  bool success;
+  int success;
 };
 
 /* static variables */
@@ -31,48 +31,53 @@ static test_node reglist[MAX_TESTS];
 
 static uint16_t n_test = 0;
 
-static bool end_declare = 0;
+static int end_declare = 0;
 
 static uint16_t n_run = 0;
 
 static uint16_t n_success = 0;
 
-static uint8_t i = 0;
+static uint16_t iter = 0;
 /* Interface definition for entry-point */
 
 void run_all_tests(void) {
   /* foolproof for the user */
   end_declare = 1;
 
-  for (i = 0; i < n_test; i++) {
-    switch (IS_EXCLUDE(i)) {
-    case true:
-      if (IS_VERBOSE(i))
-        printf(STRIKETHROUGH MAGNETA
-               "\nExcluded test %s at line %d, file %s\n" RESET_ALL,
-               reglist[i].testname, reglist[i].line, reglist[i].filename);
-      continue;
-    case false:
-      reglist[i].test();
-      ++n_run;
-      n_success += reglist[i].success;
-      break;
+  for (iter = 0; iter < n_test; iter++) {
+    switch (IS_EXCLUDE(iter)) {
+      case 1:
+        if (IS_VERBOSE(iter)) {
+          printf(STRIKETHROUGH MAGNETA
+                 "\nExcluded test %s at line %d, file %s\n" RESET_ALL,
+                 reglist[iter].testname, reglist[iter].line,
+                 reglist[iter].filename);
+        }
+        continue;
+      case 0:
+        reglist[iter].test();
+        ++n_run;
+        n_success += reglist[iter].success;
+        break;
+      default:
+        break;
     }
   }
 }
 
 /* Interface definition for end-user test registration */
 
-void reglist_add(void (*test)(void), const char *test_name,
-                 const char *filename, uint16_t line) {
-  if (end_declare)
+void reglist_add(void (*test)(void), const char *test_name, const char *filename,
+                 uint16_t line) {
+  if (end_declare) {
     return;
+  }
   reglist[n_test].test = test;
   reglist[n_test].filename = filename;
   reglist[n_test].testname = test_name;
   reglist[n_test].line = line;
   reglist[n_test].opt = 1;
-  reglist[n_test].success = true;
+  reglist[n_test].success = 1;
   n_test++;
 }
 
@@ -93,12 +98,12 @@ void get_summary_info(uint16_t *num_test, uint16_t *num_run,
 
 void get_current_test_info(const char **test_name, uint16_t *line,
                            const char **file) {
-  (*test_name) = reglist[i].testname;
-  (*line) = reglist[i].line;
-  (*file) = reglist[i].filename;
+  (*test_name) = reglist[iter].testname;
+  (*line) = reglist[iter].line;
+  (*file) = reglist[iter].filename;
 }
 
-uint16_t get_verbosity(void) { return (reglist[i].opt >> 1) & 3; }
+uint16_t get_verbosity(void) { return (reglist[iter].opt >> 1) & 3; }
 
 /* Interface definition for assertion results */
-void notify_fail(void) { reglist[i].success = 0; }
+void notify_fail(void) { reglist[iter].success = 0; }

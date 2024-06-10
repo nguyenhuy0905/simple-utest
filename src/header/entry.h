@@ -1,5 +1,5 @@
-#ifndef __SIMPLE_UTEST_ENTRY_H__
-#define __SIMPLE_UTEST_ENTRY_H__
+#ifndef SIMPLE_UTEST_ENTRY_H
+#define SIMPLE_UTEST_ENTRY_H
 
 /* Connects to entry.c in source code. This is the
  * execution point for the utility */
@@ -8,4 +8,4 @@
 
 extern void run_all_tests(void);
 
-#endif
+#endif  // !SIMPLE_UTEST_ENTRY_H
