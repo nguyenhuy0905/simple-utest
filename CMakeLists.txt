@@ -5,8 +5,10 @@ project(
   VERSION 0.5)
 
 # standards
-set(CMAKE_C_STANDARD 23)
-set(CMAKE_C_STANDARD_REQUIRED ON)
+if(NOT MSVC)
+  set(CMAKE_C_STANDARD 23)
+  set(CMAKE_C_STANDARD_REQUIRED ON)
+endif()
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
 
 # compilation options
