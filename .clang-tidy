@@ -1,0 +1,11 @@
+Checks: "
+  -*,
+  google-*,
+  bugprone-*,
+  readability-*,
+  performance-*,
+  portability-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-reserved-identifier
+"
+WarningsAsErrors: '*'
