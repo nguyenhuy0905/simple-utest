@@ -27,4 +27,5 @@ register_param_test(test_params, ARGS_LIST(int sum1, char sum2),  // NOLINT
                     PARAM_LIST(2, 'c')) {
   simple_assert_char(('a' + sum1), sum2);
   simple_assert_int((sum2 - 'a'), sum1);
+  simple_assert_true(true);
 }
