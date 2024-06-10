@@ -3,6 +3,8 @@
 
 /* this inclusion is mainly to have my LSP not scream at me */
 #include <stdint.h>
+
+#include ".deps.h"
 /*
  * The heart of this utility. Controls everything about a test; from test
  * execution, option handling to log info provision

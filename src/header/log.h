@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 #include <stdio.h>
+
+#include ".deps.h"
 /*
  * Console output for the utility.
  * Any non-test-specific output is defined in log.c,
@@ -51,20 +53,24 @@ extern uint16_t get_verbosity(void);
 
 extern void log_fail_general(void);
 
-#define log_fail_result(format)                                                \
-  printf(RED DIM "\t"                                                          \
-                 "%s, line %d: "                                               \
-                 "Expected " format ", got " format "\n" RESET_ALL,            \
+#define log_fail_result(format)                             \
+  printf(RED DIM                                            \
+         "\t"                                               \
+         "%s, line %d: "                                    \
+         "Expected " format ", got " format "\n" RESET_ALL, \
          __func__, line, expected, actual);
 
-#define log_fail(format)                                                       \
-  log_fail_general();                                                          \
+#define log_fail(format) \
+  log_fail_general();    \
   log_fail_result(format);
 
 extern void log_success_general(void);
 
-#define log_success(format)                                                    \
-  log_success_general();\
-  printf(GREEN DIM "\t" "%s(" format ", " format "), line %d\n" RESET_ALL, __func__, expected, actual, __LINE__);\
+#define log_success(format)                                 \
+  log_success_general();                                    \
+  printf(GREEN DIM                                          \
+         "\t"                                               \
+         "%s(" format ", " format "), line %d\n" RESET_ALL, \
+         __func__, expected, actual, __LINE__);
 
 #endif

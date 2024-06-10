@@ -1,6 +1,7 @@
 #ifndef SIMPLE_UTEST_ASSERT_MODULE_H
 #define SIMPLE_UTEST_ASSERT_MODULE_H
 
+#include ".deps.h"
 #include "log.h"
 
 /*
